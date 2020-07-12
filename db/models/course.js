@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = () => {
+module.exports = (sequelize) => {
   class Course extends Sequelize.Model {};
   Course.init({
     title: {
@@ -17,7 +17,7 @@ module.exports = () => {
     materialsNeeded: {
       type: Sequelize.STRING
     }
-  });
+  }, {sequelize});
 
   Course.associate = (models) => {
     Course.belongsTo(models.Person);

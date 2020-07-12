@@ -5,17 +5,17 @@ const sequelize = new Sequelize({
   storage: 'fsjstd-restapi.db',
 });
 
-const User = require('./models/user')(sequelize);
-const Course = require('./models/course')(sequelize);
+// const User = require('./models/user')(sequelize);
+// const Course = require('./models/course')(sequelize);
 
-const models = { User, Course };
-User.associate(models);
-Course.associate(models);
+// const models = { User, Course };
+// User.associate(models);
+// Course.associate(models);
 
 const db = {
   sequelize,
   Sequelize,
-  models,
+  models: {}
 }
 
 module.exports = db;
