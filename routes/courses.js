@@ -3,23 +3,23 @@ const router = express.Router();
 
 
 router.get('/courses', (req, res) => {
-  res.json({ message: 'Im inside courses routes' })
+  // Returns a list of courses (including the user that own each course)
 })
 
 router.post('/courses', (req, res) => {
-  res.json({ message: 'Im inside courses routes' })
+  // Creates a course, sets the location header to the URI for the course
 })
 
 router.get('/courses/:id', (req, res) => {
-  res.json({ message: 'Im inside courses routes' })
+  // Returns a course (including the user that owns the course) for the provided course ID
 });
 
 router.put('/courses/:id', (req, res) => {
-  res.json({ message: 'Im inside courses routes' })
+  // Updates a course and returns no content
 });
 
 router.delete('/courses/:id', (req, res) => {
-  res.json({ message: 'Im inside courses routes' })
+  // Deletes a course and returns no content
 });
 
 module.exports = router;

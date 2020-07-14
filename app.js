@@ -16,6 +16,8 @@ const app = express();
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
+app.use(express.json());
+
 // TODO setup your api routes here
 app.use('/api', usersRoutes, coursesRoutes);
 
@@ -41,7 +43,7 @@ app.use((err, req, res, next) => {
 
   res.status(err.status || 500).json({
     message: err.message,
-    error: {},
+    error: err.name,
   });
 });
 
@@ -56,7 +58,7 @@ const server = app.listen(app.get('port'), () => {
 (async () => {
   try{
     console.log('Connection has been established successfully.');
-    await sequelize.authenticate();
+    await sequelize.sync();
   }catch(error){
     console.error('Unable to connect to the database:', error);
   }
