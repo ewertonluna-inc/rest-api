@@ -6,7 +6,13 @@ const router = express.Router();
 
 
 router.get('/users', asyncHandler((req, res) => {
-  // Returns the currently authenticated user - 200 status code.  
+  // Returns the currently authenticated user - 200 status code.
+  const { firstName, lastName, emailAddres } = req.currentUser;
+  res.json({
+    firstName,
+    lastName,
+    emailAddres,
+  });
 }));
 
 
@@ -18,7 +24,10 @@ router.post('/users', asyncHandler(async (req, res, next) => {
     user.password = password ? bcryptjs.hashSync(user.password) : password;
 
     await User.create(user);
-    res.status(201).json({user});
+    res
+      .set('Location', '/')
+      .status(201)
+      .end();
   } catch (error) {
     const message = [];
     // If validation fails (Sequelize level error)...
