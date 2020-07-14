@@ -12,9 +12,23 @@ router.get('/courses', asyncHandler(async (req, res) => {
   res.json({courses});
 }));
 
-router.post('/courses', (req, res) => {
+router.post('/courses', asyncHandler(async (req, res) => {
   // Creates a course, sets the location header to the URI for the course
-})
+  try {
+    const course = await Course.create(req.body);
+    res
+      .set('Location', `/courses/${course.id}`)
+      .status(201)
+      .end();
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      const message = error.errors.map(err => err.message);
+      error.message = message;
+      error.status = 400;
+    }
+    throw error;
+  }
+}));
 
 router.get('/courses/:id', asyncHandler(async (req, res) => {
   // Returns a course (including the user that owns the course) for the provided course ID
