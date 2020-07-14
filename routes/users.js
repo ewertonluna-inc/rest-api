@@ -46,7 +46,7 @@ router.put('/users/:id', asyncHandler(async (req, res, next) => {
       console.log(user);
       const updatedFields = req.body;
       const { password } = updatedFields;
-      
+      // If password is truthy, hash user password. Otherwise, do nothing to it.
       updatedFields.password = password ? bcryptjs.hashSync(password) : password;
       
       await user.update(updatedFields);
