@@ -35,4 +35,5 @@ The API uses HTTP's Basic Authentication to identify the user by requiring the u
 - POST /api/courses
 - PUT /api/courses/:id
 - DELETE /api/courses/:id
+
 Users only have authorization to edit and delete their own courses.
