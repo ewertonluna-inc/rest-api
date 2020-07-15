@@ -13,19 +13,20 @@ It's build using REST API design, Node.js, and Express to create API routes, Seq
 ## Sequelize Model definitions
 There are two models representing the two related tables in the database:
 1. **User** <br>
-The User's table consists of the following properties:
-  - id (Integer, primary key, auto-generated)
-  - firstName (String)
-  - lastName (String)
-  - emailAddress (String)
-  - password (String)
+The User table consists of the following properties:
+    - id (Integer, primary key, auto-generated)
+    - firstName (String)
+    - lastName (String)
+    - emailAddress (String)
+    - password (String)
 2. **Course**
-  - id (Integer, primary key, auto-generated)
-  - userId (id from the Users table)
-  - title (String)
-  - description (Text)
-  - estimatedTime (String, nullable)
-  - materialsNeeded (String, nullable)
+The Course table consists of the following properties:
+    - id (Integer, primary key, auto-generated)
+    - userId (id from the Users table)
+    - title (String)
+    - description (Text)
+    - estimatedTime (String, nullable)
+    - materialsNeeded (String, nullable)
 
 A user has a *one-to-many* relationship with a table and a course has a *one-to-one* relationship with a user.
 
