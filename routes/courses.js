@@ -42,12 +42,35 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
   }
 }));
 
-router.put('/courses/:id', (req, res) => {
+router.put('/courses/:id', asyncHandler(async (req, res) => {
   // Updates a course and returns no content
-});
+  const course = await Course.findByPk(req.params.id);
+  if (course) {
+    try {
+      await course.update(req.body);
+      res.status(204).end();
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        const message = error.errors.map(err => err.message);
+        error.message = message;
+        error.status = 400;
+      }
+      throw error;
+    }
+  } else {
+    res.status(404).json({message: 'Course not found'});
+  }
+}));
 
-router.delete('/courses/:id', (req, res) => {
+router.delete('/courses/:id', asyncHandler(async (req, res) => {
   // Deletes a course and returns no content
-});
+  const course = await Course.findByPk(req.params.id);
+  if (course) {
+    await course.destroy();
+    res.status(204).end();
+  } else {
+    res.status(404).json({ message: 'Course not found' });
+  }
+}));
 
 module.exports = router;

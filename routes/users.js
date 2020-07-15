@@ -15,7 +15,6 @@ router.get('/users', asyncHandler((req, res) => {
   });
 }));
 
-
 router.post('/users', asyncHandler(async (req, res, next) => {
   try {
     const user = req.body;
@@ -52,7 +51,6 @@ router.put('/users/:id', asyncHandler(async (req, res, next) => {
     const user = await User.findByPk(req.params.id);
 
     if (user) {
-      console.log(user);
       const updatedFields = req.body;
       const { password } = updatedFields;
       // If password is truthy, hash user password. Otherwise, do nothing to it.
