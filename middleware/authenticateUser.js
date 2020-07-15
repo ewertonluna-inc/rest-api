@@ -13,7 +13,7 @@ module.exports = ( model ) => {
         if (user) {
           const authenticated = bcryptjs.compareSync(credentials.pass, user.password);
           if (authenticated) {
-            console.log(`Authentication successfull for user ${user.emailAddress}`);
+            console.log(`Authentication successful for user ${user.emailAddress}`);
             req.currentUser = user;
           } else {
             message = `Authentication failed for user ${user.emailAddress}`;
