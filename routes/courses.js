@@ -68,12 +68,7 @@ router.put('/courses/:id', [
 
     if (!errors.isEmpty()) {
       const errorMessages = errors.array().map(err => err.msg);
-      const error = {
-        message: errorMessages,
-        status: 400,
-        name: 'ExpressValidatorError',
-      }
-      throw error;
+      return res.status(400).json({message: errorMessages, name: 'ExpressValidatorError'});
     }
     
     if (course) {
