@@ -29,7 +29,7 @@ The User's table consists of the following properties:
 
 A user has a *one-to-many* relationship with a table and a course has a *one-to-one* relationship with a user.
 
-## Authentication and Permission
+## Authentication/Authorization
 The API uses HTTP's Basic Authentication to identify the user by requiring the user email and password. The protect routes are:
 - GET /api/users
 - POST /api/courses
