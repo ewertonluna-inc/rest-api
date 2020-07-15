@@ -12,5 +12,5 @@ It's build using REST API design, Node.js, and Express to create API routes, Seq
 
 ## Sequelize Model definitions
 There are two models representing the two related tables in the database:
-1. **User**
+1. **User** <br>
 The User's table consists of the following properties:
