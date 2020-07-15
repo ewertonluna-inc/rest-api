@@ -12,8 +12,7 @@ It's build using REST API design, Node.js, and Express to create API routes, Seq
 
 ## Sequelize Model definitions
 There are two models representing the two related tables in the database:
-1. **User** 
-
+1. **User** <br>
 The User table consists of the following properties:
     - id (Integer, primary key, auto-generated)
     - firstName (String)
@@ -21,8 +20,7 @@ The User table consists of the following properties:
     - emailAddress (String)
     - password (String)
 
-2. **Course**
-
+2. **Course** <br>
 The Course table consists of the following properties:
     - id (Integer, primary key, auto-generated)
     - userId (id from the Users table)
