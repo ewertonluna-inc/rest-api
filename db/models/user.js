@@ -30,6 +30,9 @@ module.exports = (sequelize) => {
         notEmpty: {
           msg: 'Email field must have a value',
         },
+        isEmail: {
+          msg: 'Email field must have a valid format',
+        }
       }
     },
     password: {
