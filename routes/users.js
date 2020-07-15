@@ -8,11 +8,11 @@ const router = express.Router();
 // Protected route needs user authentication/authorization
 router.get('/users', authenticateUser(User), asyncHandler((req, res) => {
   // Returns the currently authenticated user - 200 status code.
-  const { firstName, lastName, emailAddres } = req.currentUser;
+  const { firstName, lastName, emailAddress } = req.currentUser;
   res.json({
     firstName,
     lastName,
-    emailAddres,
+    emailAddress,
   });
 }));
 
