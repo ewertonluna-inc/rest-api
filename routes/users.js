@@ -1,11 +1,12 @@
 const express = require('express');
 const bcryptjs = require('bcryptjs');
 const asyncHandler = require('../middleware/asyncHandler');
+const authenticateUser = require('../middleware/authenticateUser');
 const { User } = require('../db/index').models;
 const router = express.Router();
 
-
-router.get('/users', asyncHandler((req, res) => {
+// Protected route needs user authentication/authorization
+router.get('/users', authenticateUser(User), asyncHandler((req, res) => {
   // Returns the currently authenticated user - 200 status code.
   const { firstName, lastName, emailAddres } = req.currentUser;
   res.json({

@@ -1,18 +1,19 @@
 const express = require('express');
 const { User, Course } = require('../db/index').models;
 const asyncHandler = require('../middleware/asyncHandler');
+const authenticateUser = require('../middleware/authenticateUser');
 const router = express.Router();
 
 
-router.get('/courses', asyncHandler(async (req, res) => {
+router.get('/courses', authenticateUser(User), asyncHandler(async (req, res) => {
   // Returns a list of courses (including the user that own each course)
   const courses = await Course.findAll({
     include: { model: User }
   });
-  res.json({courses});
+  res.json({ courses });
 }));
 
-router.post('/courses', asyncHandler(async (req, res) => {
+router.post('/courses', authenticateUser(User), asyncHandler(async (req, res) => {
   // Creates a course, sets the location header to the URI for the course
   try {
     const course = await Course.create(req.body);
@@ -42,7 +43,7 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
   }
 }));
 
-router.put('/courses/:id', asyncHandler(async (req, res) => {
+router.put('/courses/:id', authenticateUser(User), asyncHandler(async (req, res) => {
   // Updates a course and returns no content
   const course = await Course.findByPk(req.params.id);
   if (course) {
@@ -62,7 +63,7 @@ router.put('/courses/:id', asyncHandler(async (req, res) => {
   }
 }));
 
-router.delete('/courses/:id', asyncHandler(async (req, res) => {
+router.delete('/courses/:id', authenticateUser(User), asyncHandler(async (req, res) => {
   // Deletes a course and returns no content
   const course = await Course.findByPk(req.params.id);
   if (course) {
