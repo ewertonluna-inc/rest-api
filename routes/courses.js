@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 // Returns a list of courses (including the user that own each course)
-router.get('/courses', authenticateUser(User), asyncHandler(async (req, res) => {
+router.get('/courses', asyncHandler(async (req, res) => {
   const courses = await Course.findAll({
     include: {
       model: User,
